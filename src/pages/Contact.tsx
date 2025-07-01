@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -20,46 +19,10 @@ export default function Contact() {
   
   const [isSubmitted, setIsSubmitted] = useState(false);
   
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    subject: "",
-    message: ""
-  });
-  
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  
   useEffect(() => {
     // Scroll to top when component mounts
     window.scrollTo(0, 0);
   }, []);
-  
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-  
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    // In a real app, this would send the form data to a server
-    console.log("Form submitted:", formData);
-    
-    setIsSubmitted(true);
-    
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        subject: "",
-        message: ""
-      });
-    }, 3000);
-  };
   
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -190,7 +153,7 @@ export default function Contact() {
                 <h2 className="text-2xl font-bold mb-6">{t.contact.sendMessage}</h2>
                 
                 <div className="glass-card p-6">
-                    {!isSubmitted ? (
+                  {!isSubmitted ? (
                     <form onSubmit={handleSubmit} className="space-y-6">
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div className="space-y-2">
@@ -198,7 +161,8 @@ export default function Contact() {
                           <Input 
                             id="name" 
                             name="name"
-                            
+                            value={formData.name}
+                            onChange={handleInputChange}
                             placeholder="John Doe" 
                             required 
                           />
@@ -210,7 +174,8 @@ export default function Contact() {
                             id="email" 
                             name="email"
                             type="email"
-                            
+                            value={formData.email}
+                            onChange={handleInputChange}
                             placeholder="john@example.com" 
                             required 
                           />
@@ -223,7 +188,8 @@ export default function Contact() {
                           <Input 
                             id="phone" 
                             name="phone"
-                            
+                            value={formData.phone}
+                            onChange={handleInputChange}
                             placeholder="+1 234 567 8900" 
                           />
                         </div>
@@ -233,7 +199,8 @@ export default function Contact() {
                           <Input 
                             id="subject" 
                             name="subject"
-                            
+                            value={formData.subject}
+                            onChange={handleInputChange}
                             placeholder="Reservation Inquiry" 
                             required 
                           />
@@ -245,7 +212,8 @@ export default function Contact() {
                         <textarea 
                           id="message" 
                           name="message"
-                          
+                          value={formData.message}
+                          onChange={handleInputChange}
                           placeholder={t.contact.howCanWeHelp} 
                           className="w-full min-h-[150px] p-3 rounded-md border border-input bg-background"
                           required 
