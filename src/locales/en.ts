@@ -9,7 +9,7 @@ export const en = {
   },
   hero: {
     subtitle: "BEACHFRONT LUXURY ACCOMMODATION",
-    title: "Experience Seaside Tranquility",
+    title: "Experience Bhakti",
     description: "Discover our exclusive collection of luxury beachfront apartments and hotel rooms, offering unparalleled comfort and breathtaking sea views.",
     bookStay: "Book Your Stay",
     exploreApartments: "Explore Apartments",
